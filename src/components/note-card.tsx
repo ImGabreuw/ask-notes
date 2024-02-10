@@ -1,16 +1,17 @@
-function NoteCard() {
+interface NoteCardProps {
+  note: {
+    date: Date;
+    content: string;
+  };
+}
+
+function NoteCard({ note }: NoteCardProps) {
   return (
-    <button className="rounded-md text-left bg-slate-800 p-5 space-y-3 overflow-hidden relative outline-none hover:ring-2 hover:ring-slate-600 focus-visible:ring-2 focus-visible:ring-lime-400">
-      <span className="text-sm font-medium text-slate-300">há 2 dias</span>
-      <p className="text-sm leading-6 text-slate-400">
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dicta
-        excepturi, eius blanditiis id temporibus tempore fugit nihil laboriosam
-        enim velit ab nemo nam quisquam necessitatibus, voluptas, sunt quos ut
-        culpa! Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-        Inventore sit voluptates blanditiis fugiat, ea dolorum in facere
-        necessitatibus repudiandae illo officiis perspiciatis aperiam iste
-        exercitationem dolor non quidem quibusdam nobis.
-      </p>
+    <button className="rounded-md text-left flex flex-col bg-slate-800 p-5 gap-3 overflow-hidden relative outline-none hover:ring-2 hover:ring-slate-600 focus-visible:ring-2 focus-visible:ring-lime-400">
+      <span className="text-sm font-medium text-slate-300">
+        {note.date.toISOString()}
+      </span>
+      <p className="text-sm leading-6 text-slate-400">{note.content}</p>
 
       <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-black/60 to-black/0 pointer-events-none"></div>
     </button>

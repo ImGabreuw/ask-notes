@@ -2,6 +2,11 @@ import logo from "./assets/logo-ask-notes.svg";
 import { NewNodeCard } from "./components/new-note-card";
 import { NoteCard } from "./components/note-card";
 
+const note = {
+  date: new Date(),
+  content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo tempore doloribus animi facere exercitationem repudiandae impedit tenetur suscipit. Minima fuga quos totam aperiam quidem autem non expedita, minus tenetur quasi.",
+};
+
 function App() {
   return (
     <div className="mx-auto max-w-6xl my-12 space-y-6">
@@ -19,10 +24,7 @@ function App() {
 
       <div className="grid grid-cols-3 gap-6 auto-rows-[250px]">
         <NewNodeCard />
-        <NoteCard />
-        <NoteCard />
-        <NoteCard />
-        <NoteCard />
+        <NoteCard note={note} />
       </div>
     </div>
   );
