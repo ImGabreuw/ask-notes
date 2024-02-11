@@ -1,13 +1,27 @@
+import { useState } from "react";
 import logo from "./assets/logo-ask-notes.svg";
 import { NewNodeCard } from "./components/new-note-card";
 import { NoteCard } from "./components/note-card";
 
-const note = {
-  date: new Date(),
-  content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo tempore doloribus animi facere exercitationem repudiandae impedit tenetur suscipit. Minima fuga quos totam aperiam quidem autem non expedita, minus tenetur quasi.",
-};
+interface Note {
+  id: string;
+  date: Date;
+  content: string;
+}
 
 function App() {
+  const [notes, setNotes] = useState<Note[]>([]);
+
+  function onNoteCreated(content: string) {
+    const newNote = {
+      id: crypto.randomUUID(),
+      date: new Date(),
+      content,
+    };
+
+    setNotes([newNote, ...notes]);
+  }
+
   return (
     <div className="mx-auto max-w-6xl my-12 space-y-6">
       <img src={logo} alt="Ask Notes Logo" />
@@ -23,8 +37,11 @@ function App() {
       <div className="h-px bg-slate-700" />
 
       <div className="grid grid-cols-3 gap-6 auto-rows-[250px]">
-        <NewNodeCard />
-        <NoteCard note={note} />
+        <NewNodeCard onNoteCreated={onNoteCreated} />
+
+        {notes.map((note) => {
+          return <NoteCard key={note.id} note={note} />;
+        })}
       </div>
     </div>
   );
